@@ -1,3 +1,12 @@
+"""
+Uso: PEP, pip y APIs
+Creado: Andrés Hernández Mata
+Version: 1.0
+Python: 3.8.2
+Fecha: 10 de Febrero del 2021
+"""
+
+
 from pyhunter import PyHunter
 from openpyxl import Workbook
 import getpass
