@@ -13,8 +13,6 @@ import getpass
 
 
 def Busqueda(organizacion):
-    #Cantidad de resultados esperados de la búsqueda
-    #El límite MENSUAL de Hunter es 50, cuidado!
     resultado = hunter.domain_search (company = organizacion, limit = 10, emails_type = 'personal')
     return resultado
 
