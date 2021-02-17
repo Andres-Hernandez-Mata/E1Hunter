@@ -1,9 +1,9 @@
 """
 Uso: PEP, pip y APIs
 Creado: Andrés Hernández Mata
-Version: 1.0
-Python: 3.8.2
-Fecha: 10 de Febrero del 2021
+Version: 2.1.0
+Python: 3.9.1
+Fecha: 15 de Febrero del 2021
 """
 
 
@@ -12,7 +12,7 @@ from openpyxl import Workbook
 import getpass
 
 
-def Busqueda(organizacion):
+def busqueda(organizacion):
     resultado = hunter.domain_search(
                                     company=organizacion,
                                     limit=10,
@@ -20,7 +20,7 @@ def Busqueda(organizacion):
     return resultado
 
 
-def GuardarInformacion(datosEncontrados, organizacion):
+def guardar_informacion(datos_encontrados, organizacion):
     libro = Workbook()
     hoja = libro.create_sheet(organizacion)
     libro.save("Hunter" + organizacion + ".xlsx")
@@ -33,7 +33,7 @@ def GuardarInformacion(datosEncontrados, organizacion):
                                         'Linkedin',
                                         'Twitter'))
     count = 2
-    emails = datosEncontrados['emails']
+    emails = datos_encontrados['emails']
     for x in emails:
         excel.cell(count, 1, x['value'])
         excel.cell(count, 2, x['type'])
@@ -49,10 +49,9 @@ print("Script para buscar información")
 apikey = getpass.getpass("Ingresa tu API key: ")
 hunter = PyHunter(apikey)
 orga = input("Dominio a investigar: ")
-datosEncontrados = Busqueda(orga)
-if datosEncontrados is None:
+datos_encontrados = busqueda(orga)
+if datos_encontrados is None:
     exit()
 else:
-    print(datosEncontrados)
-    print(type(datosEncontrados))
-    GuardarInformacion(datosEncontrados, orga)
+    guardar_informacion(datos_encontrados, orga)
+    print("Informacion guardada correctamente!")
